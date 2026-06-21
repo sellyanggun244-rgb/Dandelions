@@ -200,8 +200,8 @@ div[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p {
 
 [data-testid="stImage"] img {
     width: 100% !important;
-    height: 340px !important;
-    object-fit: cover !important;
+    height: auto !important;
+    object-fit: contain !important;
     border-radius: 10px;
     border: 1px solid #DDD4CB;
 }
@@ -295,7 +295,7 @@ with col1:
             unsafe_allow_html=True
         )
         img_a = Image.open(file_baby)
-        stream.image(img_a, caption="Pratinjau Foto Masa Kecil", use_container_width=True)
+        stream.image(img_a, caption="Pratinjau Foto Masa Kecil", use_column_width=True)
 
 
 with col2:
@@ -316,7 +316,7 @@ with col2:
             unsafe_allow_html=True
         )
         img_b = Image.open(file_adult)
-        stream.image(img_b, caption="Pratinjau Foto Sekarang", use_container_width=True)
+        stream.image(img_b, caption="Pratinjau Foto Sekarang", use_column_width=True)
 
 stream.markdown(
     "<hr style='border: 0; height: 1px; background: #DCD7CE; margin: 25px 0;'>",
@@ -438,6 +438,6 @@ if pilihan_sampel:
 
         c_gray1, c_gray2 = stream.columns(2)
         with c_gray1:
-            stream.image(img_gray, caption=f"Citra Grayscale Asli ({nama_caption})", use_container_width=True)
+            stream.image(img_gray, caption=f"Citra Grayscale Asli ({nama_caption})", use_column_width=True)
         with c_gray2:
-            stream.image(res_gray, caption=f"Hasil Rekonstruksi PCA ({n_components_slider} Komponen)", use_container_width=True)
+            stream.image(res_gray, caption=f"Hasil Rekonstruksi PCA ({n_components_slider} Komponen)", use_column_width=True)
