@@ -17,8 +17,6 @@ def hitung_pca_core(matrix, n_comp):
     rata_rata = np.mean(matrix, axis=0)
     centered = matrix - rata_rata
     U, S, Vt = np.linalg.svd(centered, full_matrices=False)
-    # FIX: jaga agar n minimal 1, mencegah hasil rekonstruksi kosong/blank
-    # jika n_comp atau ukuran gambar sangat kecil.
     n = max(min(n_comp, len(S), w, h), 1)
     S_diag = np.diag(S[:n])
     reconstructed = np.dot(U[:, :n], np.dot(S_diag, Vt[:n, :])) + rata_rata
@@ -296,7 +294,7 @@ with col1:
             unsafe_allow_html=True
         )
         img_a = Image.open(file_baby)
-        stream.image(img_a, caption="Pratinjau Foto Masa Kecil", use_container_width=True)
+        stream.image(img_a, caption="Pratinjau Foto Masa Kecil", use_column_width=True)
 
 with col2:
     stream.markdown(
@@ -316,7 +314,7 @@ with col2:
             unsafe_allow_html=True
         )
         img_b = Image.open(file_adult)
-        stream.image(img_b, caption="Pratinjau Foto Sekarang", use_container_width=True)
+        stream.image(img_b, caption="Pratinjau Foto Sekarang", use_column_width=True)
 
 stream.markdown(
     "<hr style='border: 0; height: 1px; background: #DCD7CE; margin: 25px 0;'>",
@@ -438,6 +436,6 @@ if pilihan_sampel:
 
         c_gray1, c_gray2 = stream.columns(2)
         with c_gray1:
-            stream.image(img_gray, caption=f"Citra Grayscale Asli ({nama_caption})", use_container_width=True)
+            stream.image(img_gray, caption=f"Citra Grayscale Asli ({nama_caption})", use_column_width=True)
         with c_gray2:
-            stream.image(res_gray, caption=f"Hasil Rekonstruksi PCA ({n_components_slider} Komponen)", use_container_width=True)
+            stream.image(res_gray, caption=f"Hasil Rekonstruksi PCA ({n_components_slider} Komponen)", use_column_width=True)
