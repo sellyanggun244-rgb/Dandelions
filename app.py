@@ -54,6 +54,23 @@ stream.markdown("""
 [data-testid="stSidebar"] {
     background-color: #E6DDD4 !important;
     border-right: 1px solid #D6CDC3 !important;
+    width: 320px !important;
+    min-width: 320px !important;
+    max-width: 320px !important;
+}
+[data-testid="stSidebar"] > div:first-child {
+    width: 320px !important;
+}
+[data-testid="stSidebarResizeHandle"],
+div[data-testid="stSidebarResizeHandle"] {
+    display: none !important;
+    pointer-events: none !important;
+    width: 0px !important;
+}
+[data-testid="stSidebarUserContent"] {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    padding-top: 1.5rem !important;
 }
 [data-testid="stSidebarCollapseButton"] {
     background-color: #E6DDD4 !important;
@@ -200,8 +217,8 @@ div[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p {
 
 [data-testid="stImage"] img {
     width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
+    height: 340px !important;
+    object-fit: cover !important;
     border-radius: 10px;
     border: 1px solid #DDD4CB;
 }
