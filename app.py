@@ -54,12 +54,12 @@ stream.markdown("""
 [data-testid="stSidebar"] {
     background-color: #E6DDD4 !important;
     border-right: 1px solid #D6CDC3 !important;
-    width: 320px !important;
-    min-width: 320px !important;
-    max-width: 320px !important;
+    width: 360px !important;
+    min-width: 360px !important;
+    max-width: 360px !important;
 }
 [data-testid="stSidebar"] > div:first-child {
-    width: 320px !important;
+    width: 360px !important;
 }
 [data-testid="stSidebarResizeHandle"],
 div[data-testid="stSidebarResizeHandle"] {
@@ -68,8 +68,8 @@ div[data-testid="stSidebarResizeHandle"] {
     width: 0px !important;
 }
 [data-testid="stSidebarUserContent"] {
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
     padding-top: 1.5rem !important;
 }
 [data-testid="stSidebarCollapseButton"] {
@@ -312,7 +312,7 @@ with col1:
             unsafe_allow_html=True
         )
         img_a = Image.open(file_baby)
-        stream.image(img_a, caption="Pratinjau Foto Masa Kecil", use_column_width=True)
+        stream.image(img_a, caption="Pratinjau Foto Masa Kecil", use_container_width=True)
 
 
 with col2:
@@ -333,7 +333,7 @@ with col2:
             unsafe_allow_html=True
         )
         img_b = Image.open(file_adult)
-        stream.image(img_b, caption="Pratinjau Foto Sekarang", use_column_width=True)
+        stream.image(img_b, caption="Pratinjau Foto Sekarang", use_container_width=True)
 
 stream.markdown(
     "<hr style='border: 0; height: 1px; background: #DCD7CE; margin: 25px 0;'>",
@@ -455,6 +455,6 @@ if pilihan_sampel:
 
         c_gray1, c_gray2 = stream.columns(2)
         with c_gray1:
-            stream.image(img_gray, caption=f"Citra Grayscale Asli ({nama_caption})", use_column_width=True)
+            stream.image(img_gray, caption=f"Citra Grayscale Asli ({nama_caption})", use_container_width=True)
         with c_gray2:
-            stream.image(res_gray, caption=f"Hasil Rekonstruksi PCA ({n_components_slider} Komponen)", use_column_width=True)
+            stream.image(res_gray, caption=f"Hasil Rekonstruksi PCA ({n_components_slider} Komponen)", use_container_width=True)
