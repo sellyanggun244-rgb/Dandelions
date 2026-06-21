@@ -1,7 +1,5 @@
 [server]
-# Mengatur batas maksimal upload file (dalam Megabyte) agar RAM tidak sesak
 maxUploadSize = 10
-# Mematikan pengiriman data telemetri penggunaan ke Streamlit
 gatherUsageStats = false
 
 [theme]

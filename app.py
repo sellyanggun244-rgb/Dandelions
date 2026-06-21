@@ -68,9 +68,9 @@ div[data-testid="stSidebarResizeHandle"] {
     width: 0px !important;
 }
 [data-testid="stSidebarUserContent"] {
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
-    padding-top: 1.5rem !important;
+    padding-left: 1.2rem !important;
+    padding-right: 1.2rem !important;
+    padding-top: 1.3rem !important;
 }
 [data-testid="stSidebarCollapseButton"] {
     background-color: #E6DDD4 !important;
@@ -233,62 +233,56 @@ div[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p {
 
 with stream.sidebar:
     stream.markdown(
-        '<h1 style="font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom:0;">'
+        '<h1 style="font-size: 40px; font-weight: 700; letter-spacing: -0.5px; margin-bottom:0;">'
         '<span style="color: #2D3748;">Face</span>'
         '<span style="color: #6B7280;">Verifier</span></h1>',
         unsafe_allow_html=True
     )
     stream.markdown(
-        '<div style="font-size:15px; font-weight:600; color:#7C5C4E; '
+        '<div style="font-size:17px; font-weight:600; color:#7C5C4E; '
         'margin-top:5px; margin-bottom:8px;">Face Similarity Analysis System</div>',
         unsafe_allow_html=True
     )
     stream.markdown(
-        '<p style="font-size: 13px; line-height: 1.6; color:#374151;">'
-        'Sistem verifikasi wajah untuk membandingkan dua citra menggunakan '
-        'InsightFace (ONNX Runtime) dan Principal Component Analysis (PCA).</p>',
+        '<p style="font-size: 14px; line-height: 1.6; color:#374151;">'
+        'Sistem verifikasi wajah untuk membandingkan tingkat kemiripan dua foto wajah menggunakan ekstraksi fitur biometrik dan analisis berbasis PCA.</p>',
         unsafe_allow_html=True
     )
 
     stream.markdown(
-        '<div style="background-color: #F7F4F0; border: 1px solid #DDD4CB; padding: 15px; border-radius: 12px;">'
+        '<div style="background-color: #F7F4F0; border: 1px solid #DDD4CB; padding: 17px; border-radius: 12px;">'
         '<strong style="color:#7C5C4E;">InsightFace + PCA Engine</strong><br>'
-        '<p style="font-size:12px; line-height:1.5; margin:5px 0 0 0; color:#374151;">'
-        'Mengekstrak embedding wajah 512-dimensi menggunakan model ONNX '
-        '(buffalo_sc), lalu memproyeksikannya ke ruang PCA untuk menghitung '
-        'jarak Euclidean dan Cosine Similarity secara efisien.</p></div>',
+        '<p style="font-size:14px; line-height:1.5; margin:5px 0 0 0; color:#374151;">'
+        'Menggunakan model InsightFace untuk mengekstrak karakteristik wajah dan PCA untuk membantu proses analisis kemiripan secara efisien.</p></div>',
         unsafe_allow_html=True
     )
 
-    stream.markdown("<div style='margin-top: 25px;'></div>", unsafe_allow_html=True)
+    stream.markdown("<div style='margin-top: 28px;'></div>", unsafe_allow_html=True)
     stream.sidebar.markdown("### Fitur Tambahan")
 
     box_fitur = stream.container(border=True)
 
     with box_fitur:
         stream.markdown(
-            '<div style="color:#7C5C4E; font-size:14px; font-weight:700; margin-bottom:12px; '
-            'font-family: \'Segoe UI\', Roboto, sans-serif;">PCA Image Compression</div>',
+            '<div style="color:#7C5C4E; font-size:17px; font-weight:700; margin-bottom:12px;">'
+            'PCA Image Compression</div>',
             unsafe_allow_html=True
         )
 
         n_components_slider = stream.slider(
-            "Pilih Komponen Utama (PCA)",
-            5,
-            150,
-            50,
+            "Jumlah Komponen PCA:",
+            5, 150, 50,
             key="SliderPCA_Core"
         )
 
 stream.markdown(
-    '<h2 style="font-size:26px; font-weight:700; color:#2D3748; margin-bottom: 0;">'
-    'Verifikasi Komparasi Wajah</h2>',
+    '<h2 style="font-size:28px; font-weight:700; color:#2D3748; margin-bottom: 0;">'
+    'Verifikasi Kemiripan Wajah</h2>',
     unsafe_allow_html=True
 )
 stream.markdown(
-    '<p style="font-size:14px; margin-bottom: 25px; color:#374151;">'
-    'Unggah dua foto wajah dalam format JPG atau PNG. Sistem akan menganalisis '
-    'koordinat geometris wajah di dalam ruang matriks tereduksi PCA.</p>',
+    '<p style="font-size:15px; margin-bottom: 25px; color:#374151;">'
+    'Unggah dua foto wajah dalam format JPG atau PNG untuk membandingkan karakteristik wajah pada kedua foto dan menampilkan hasil analisis kemiripannya.</p>',
     unsafe_allow_html=True
 )
 
@@ -297,9 +291,9 @@ col1, col2 = stream.columns(2)
 with col1:
     stream.markdown(
         """<div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
-        <span style="background: #F1EAE3; color: #7C5C4E; font-size: 11px; font-weight: 700;
+        <span style="background: #F1EAE3; color: #7C5C4E; font-size: 12px; font-weight: 700;
         padding: 4px 10px; border-radius: 6px; border: 1px solid #D6CDC3;">Sampel A</span>
-        <span style="font-size: 14px; font-weight: 600; color: #374151;">Foto Masa Kecil</span>
+        <span style="font-size: 15px; font-weight: 600; color: #374151;">Foto Masa Kecil</span>
         </div>""",
         unsafe_allow_html=True
     )
@@ -318,9 +312,9 @@ with col1:
 with col2:
     stream.markdown(
         """<div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
-        <span style="background: #F1EAE3; color: #7C5C4E; font-size: 11px; font-weight: 700;
+        <span style="background: #F1EAE3; color: #7C5C4E; font-size: 12px; font-weight: 700;
         padding: 4px 10px; border-radius: 6px; border: 1px solid #D6CDC3;">Sampel B</span>
-        <span style="font-size: 14px; font-weight: 600; color: #374151;">Foto Sekarang</span>
+        <span style="font-size: 15px; font-weight: 600; color: #374151;">Foto Sekarang</span>
         </div>""",
         unsafe_allow_html=True
     )
@@ -342,7 +336,7 @@ stream.markdown(
 
 btn_col1, btn_col2 = stream.columns([3, 1])
 with btn_col1:
-    verify_clicked = stream.button("Jalankan Autentikasi", type="primary", use_container_width=True)
+    verify_clicked = stream.button("Analisis Kemiripan", type="primary", use_container_width=True)
 with btn_col2:
     reset_clicked = stream.button("Mulai Ulang", type="secondary", use_container_width=True)
 
@@ -360,9 +354,6 @@ if verify_clicked:
         tmp_adult_path = os.path.join(tmp_dir, "tmp_face2.png")
 
         try:
-            # FIX: konversi ke RGB sebelum disimpan sebagai PNG, agar foto
-            # dengan mode RGBA/CMYK/P (alpha channel, palette, dsb.) tidak
-            # menghasilkan warna yang salah saat dibaca ulang oleh OpenCV.
             Image.open(file_baby).convert("RGB").save(tmp_baby_path)
             Image.open(file_adult).convert("RGB").save(tmp_adult_path)
 
@@ -398,7 +389,7 @@ if "pilihan_res" in stream.session_state:
 
     panel_html = f"""
     <div style="background-color: #E6DDD4; padding: 24px; border-radius: 12px; border: 1px solid #D6CDC3; width: 100%; box-sizing: border-box;">
-        <h4 style="font-size:16px; font-weight:700; color:#2D3748; margin-top:0; margin-bottom:14px;">Hasil Analisis Biometrik Wajah</h4>
+        <h4 style="font-size:18px; font-weight:700; color:#2D3748; margin-top:0; margin-bottom:14px;">Hasil Perbandingan Wajah</h4>
         <div style="margin-bottom:18px;">
             <span style="background:{badge_bg}; color:{badge_color}; font-size:13px; font-weight:700; padding:6px 12px; border-radius:6px; display:inline-block; border:1px solid {badge_border};">
                 {badge_icon} {res["result"]}
@@ -408,21 +399,21 @@ if "pilihan_res" in stream.session_state:
             <div style="background: linear-gradient(90deg, #7A8B94, #A89F91); height: 100%; width: {val_progress}%;"></div>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
-            <div style="background: #F7F4F0; padding: 14px; border-radius: 10px; border: 1px solid #DDD4CB;">
-                <p style="font-size:11px; color:#6B7280; margin:0 0 4px 0; font-weight:500;">Cosine Similarity</p>
+            <div style="background: #F7F4F0; padding: 14px; border-radius: 10px; border: 1px solid #DDD4CB; text-align:center;">
+                <p style="font-size:15px; color:#6B7280; margin:0 0 4px 0; font-weight:500;">Cosine Similarity</p>
                 <strong style="font-size:15px; color:#2D3748;">{res["cosine"]}</strong>
             </div>
-            <div style="background: #F7F4F0; padding: 14px; border-radius: 10px; border: 1px solid #DDD4CB;">
-                <p style="font-size:11px; color:#6B7280; margin:0 0 4px 0; font-weight:500;">Euclidean Distance</p>
+            <div style="background: #F7F4F0; padding: 14px; border-radius: 10px; border: 1px solid #DDD4CB; text-align:center;">
+                <p style="font-size:15px; color:#6B7280; margin:0 0 4px 0; font-weight:500;">Euclidean Distance</p>
                 <strong style="font-size:15px; color:#2D3748;">{res["euclidean"]}</strong>
             </div>
-            <div style="background: #F7F4F0; padding: 14px; border-radius: 10px; border: 1px solid #DDD4CB;">
-                <p style="font-size:11px; color:#6B7280; margin:0 0 4px 0; font-weight:500;">Ambang Batas (Threshold)</p>
+            <div style="background: #F7F4F0; padding: 14px; border-radius: 10px; border: 1px solid #DDD4CB; text-align:center;">
+                <p style="font-size:15px; color:#6B7280; margin:0 0 4px 0; font-weight:500;">Ambang Batas (Threshold)</p>
                 <strong style="font-size:15px; color:#2D3748;">0.2800</strong>
             </div>
             <div style="background: #F7F4F0; padding: 14px; border-radius: 10px; border: 1px solid #DDD4CB; text-align:center;">
-                <p style="font-size:11px; color:#6B7280; margin:0 0 4px 0; font-weight:500;">Kemiripan</p>
-                <strong style="font-size:24px; font-weight:700; color:#7C5C4E;">{res["similarity"]}%</strong>
+                <p style="font-size:15px; color:#6B7280; margin:0 0 4px 0; font-weight:500;">Kemiripan</p>
+                <strong style="font-size:26px; font-weight:700; color:#7C5C4E;">{res["similarity"]}%</strong>
             </div>
         </div>
     </div>
@@ -433,7 +424,7 @@ stream.markdown(
     "<hr style='border: 0; height: 1px; background: #DCD7CE; margin: 30px 0;'>",
     unsafe_allow_html=True
 )
-stream.subheader("Simulasi Kompresi Citra dengan PCA")
+stream.subheader("Hasil Rekonstruksi PCA")
 
 pilihan_sampel = []
 if file_baby:

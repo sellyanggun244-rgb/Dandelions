@@ -12,7 +12,7 @@ MODEL_FILE = os.path.join(BASE_DIR, "trained_pca_model.pkl")
 N_COMPONENTS = 20
 MIN_TRAINING_SAMPLES = 2  
 DETECTION_SIZE = (320, 320)
-MAX_IMAGE_DIM = 1024  # FIX: Dipindahkan ke tingkat global agar terbaca oleh class method
+MAX_IMAGE_DIM = 1024 
 
 class FaceRecognitionSystem:
     def __init__(self):
