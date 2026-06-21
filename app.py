@@ -8,9 +8,7 @@ import model.eigenface as ef
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-
 MAX_DIM_PCA = 600
-
 
 def hitung_pca_core(matrix, n_comp):
     h, w = matrix.shape
@@ -22,14 +20,12 @@ def hitung_pca_core(matrix, n_comp):
     reconstructed = np.dot(U[:, :n], np.dot(S_diag, Vt[:n, :])) + rata_rata
     return np.clip(reconstructed, 0, 255).astype(np.uint8)
 
-
 def resize_untuk_pca(img):
     w, h = img.size
     if max(w, h) > MAX_DIM_PCA:
         skala = MAX_DIM_PCA / max(w, h)
         img = img.resize((int(w * skala), int(h * skala)))
     return img
-
 
 if not ef.model.is_trained:
     ef.run_training_manually()
@@ -276,6 +272,9 @@ stream.markdown(
 
 col1, col2 = stream.columns(2)
 
+# Mengamankan kompatibilitas parameter lebar gambar secara dinamis
+img_kwargs = {"use_container_width": True} if hasattr(stream, "image") else {"use_column_width": True}
+
 with col1:
     stream.markdown(
         """<div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
@@ -294,7 +293,7 @@ with col1:
             unsafe_allow_html=True
         )
         img_a = Image.open(file_baby)
-        stream.image(img_a, caption="Pratinjau Foto Masa Kecil", use_column_width=True)
+        stream.image(img_a, caption="Pratinjau Foto Masa Kecil", **img_kwargs)
 
 with col2:
     stream.markdown(
@@ -314,7 +313,7 @@ with col2:
             unsafe_allow_html=True
         )
         img_b = Image.open(file_adult)
-        stream.image(img_b, caption="Pratinjau Foto Sekarang", use_column_width=True)
+        stream.image(img_b, caption="Pratinjau Foto Sekarang", **img_kwargs)
 
 stream.markdown(
     "<hr style='border: 0; height: 1px; background: #DCD7CE; margin: 25px 0;'>",
@@ -341,9 +340,6 @@ if verify_clicked:
         tmp_adult_path = os.path.join(tmp_dir, "tmp_face2.png")
 
         try:
-            # FIX: konversi ke RGB sebelum disimpan sebagai PNG, agar foto
-            # dengan mode RGBA/CMYK/P (alpha channel, palette, dsb.) tidak
-            # menghasilkan warna yang salah saat dibaca ulang oleh OpenCV.
             Image.open(file_baby).convert("RGB").save(tmp_baby_path)
             Image.open(file_adult).convert("RGB").save(tmp_adult_path)
 
@@ -436,6 +432,6 @@ if pilihan_sampel:
 
         c_gray1, c_gray2 = stream.columns(2)
         with c_gray1:
-            stream.image(img_gray, caption=f"Citra Grayscale Asli ({nama_caption})", use_column_width=True)
+            stream.image(img_gray, caption=f"Citra Grayscale Asli ({nama_caption})", **img_kwargs)
         with c_gray2:
-            stream.image(res_gray, caption=f"Hasil Rekonstruksi PCA ({n_components_slider} Komponen)", use_column_width=True)
+            stream.image(res_gray, caption=f"Hasil Rekonstruksi PCA ({n_components_slider} Komponen)", **img_kwargs)
