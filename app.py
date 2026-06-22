@@ -16,6 +16,12 @@ MAX_DIM_PCA = 600
 
 
 def hitung_pca_core(matrix, n_comp):
+    if matrix.ndim == 3:
+        channels = []
+        for c in range(matrix.shape[2]):
+            channels.append(hitung_pca_core(matrix[:, :, c], n_comp))
+        return np.stack(channels, axis=2)
+
     h, w = matrix.shape
     rata_rata = np.mean(matrix, axis=0)
     centered = matrix - rata_rata
@@ -271,7 +277,9 @@ with stream.sidebar:
 
         n_components_slider = stream.slider(
             "Jumlah Komponen PCA:",
-            5, 150, 50,
+            min_value=5,
+            max_value=250,
+            value=100,
             key="SliderPCA_Core"
         )
 
@@ -426,6 +434,23 @@ stream.markdown(
 )
 stream.subheader("Hasil Rekonstruksi PCA")
 
+stream.markdown(
+    """
+    <p style="
+    font-size:14px;
+    color:#374151;
+    line-height:1.6;
+    margin-bottom:20px;">
+    Pilih salah satu citra untuk melihat hasil rekonstruksi menggunakan
+    <strong>Principal Component Analysis (PCA)</strong>.
+    Semakin banyak komponen utama yang digunakan, semakin tinggi kualitas
+    citra hasil rekonstruksi dan semakin banyak informasi visual yang
+    dapat dipertahankan.
+    </p>
+    """,
+    unsafe_allow_html=True
+)
+
 pilihan_sampel = []
 if file_baby:
     pilihan_sampel.append("Sampel A (Foto Masa Kecil)")
@@ -439,13 +464,14 @@ if pilihan_sampel:
         file_target = file_baby if "Sampel A" in pilihan_terpilih else file_adult
         nama_caption = "Sampel A" if "Sampel A" in pilihan_terpilih else "Sampel B"
 
-        img_gray = Image.open(file_target).convert('L')
-        img_gray = resize_untuk_pca(img_gray)
-        arr_gray = np.array(img_gray)
-        res_gray = hitung_pca_core(arr_gray, n_components_slider)
+        img_color = Image.open(file_target).convert("RGB")
+        img_color = resize_untuk_pca(img_color)
+        arr_color = np.array(img_color)
+        res_color = hitung_pca_core(arr_color, n_components_slider)
 
-        c_gray1, c_gray2 = stream.columns(2)
-        with c_gray1:
-            stream.image(img_gray, caption=f"Citra Grayscale Asli ({nama_caption})", use_container_width=True)
-        with c_gray2:
-            stream.image(res_gray, caption=f"Hasil Rekonstruksi PCA ({n_components_slider} Komponen)", use_container_width=True)
+        c_col1, c_col2 = stream.columns(2)
+        with c_col1:
+            stream.image(img_color, caption=f"Citra Asli ({nama_caption})", use_container_width=True)
+        with c_col2: 
+            stream.image(res_color, caption=f"Hasil Rekonstruksi PCA ({n_components_slider} Komponen)", use_container_width=True)
+            
