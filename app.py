@@ -276,7 +276,7 @@ with stream.sidebar:
         )
 
         n_components_slider = stream.slider(
-            "Jumlah Komponen Utama PCA:",
+            "Jumlah Komponen Utama (PCA):",
             min_value=5,
             max_value=250,
             value=100,
